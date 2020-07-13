@@ -1,7 +1,7 @@
 # what_that_text_means
 *analyze conversations form a chat messaging app*
 
-<img src="jpg/image.jpeg">
+![Image of Yaktocat](https://github.com/WHYTEWYLL/what_that_text_means/blob/master/jpg/image.jpg)
 
 ​
 # Overview
