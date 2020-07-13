@@ -1,6 +1,7 @@
 # what_that_text_means
 *analyze conversations form a chat messaging app*
-<img src="/jpg/image.jpeg">
+
+<img src="jpg/image.jpeg">
 
 ​
 # Overview
