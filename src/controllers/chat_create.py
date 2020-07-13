@@ -8,6 +8,9 @@ from src.helpers.errorHandler import errorHandler, Error404,APIError
 @app.route("/chat/create")
 @errorHandler
 def createchat():
+    """    
+    Funct creates a chat base of the Participants param, with a groupname.
+    """
     team = request.args.getlist('Participants')
     groupname=request.args.get('groupname')
     if db.Conversation.find_one({"name":groupname}) == None:
@@ -18,6 +21,9 @@ def createchat():
 @app.route("/chat/<conversation_id>/adduser")
 @errorHandler
 def add_more_tochat(conversation_id):
+    """    
+    Funct adds a existing user to a conversation.
+    """
     if db.Conversation.find_one({"_id":ObjectId(conversation_id)}) :
         new_one=request.args.getlist('add_user_id')
         db.Conversation.update_one({"_id":ObjectId(conversation_id)},{"$push":{"Participants":{"$each": new_one}}})
@@ -27,6 +33,9 @@ def add_more_tochat(conversation_id):
 @app.route("/chat/<conversation_id>/addmessage/<user_id>",methods = ['POST'])
 @errorHandler
 def addmessage(conversation_id,user_id):
+    """
+    Funct add a message to a conversation by the user_id.
+    """
     texto = request.args.get('text')
     print(texto)
     if db.Conversation.find_one({"_id":ObjectId(conversation_id),"Participants":user_id}) :
@@ -37,6 +46,9 @@ def addmessage(conversation_id,user_id):
 @app.route("/chat/<conversation_id>/list")
 @errorHandler 
 def showme(conversation_id):
+    """
+    Funct shows all messages from a conversation.
+    """
     cursor_mensajes=db.NEWCHAT.find({"Group":conversation_id})
     mensajes=dumps(cursor_mensajes)
     print(type(mensajes))

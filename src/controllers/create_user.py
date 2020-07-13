@@ -5,6 +5,9 @@ from src.helpers.errorHandler import errorHandler, Error404,APIError
 @app.route("/user/create/<username>")
 @errorHandler
 def newuser(username):
+    """
+    This funct creates new users, incase exists return APIerror.
+    """
     if db.User.find_one({"username":username}) == None:
         db.User.insert({"username":username})
         return str(db.User.find_one({"username":username},{"username":0})["_id"])

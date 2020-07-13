@@ -13,6 +13,9 @@ nltk.download("vader_lexicon")
 @app.route("/chat/<conversation_id>/sentiment")
 @errorHandler
 def howufeel(conversation_id):
+    """
+    Funct returns a dict with average feelings of all the message from one user.
+    """
     if db.Conversation.find_one({"_id":ObjectId(conversation_id)}):
         print("Bien")
         cursor_message=db.NEWCHAT.find({"Group":conversation_id},{"_id":0,"Group":0,"by":0})
@@ -31,8 +34,10 @@ def howufeel(conversation_id):
 @app.route("/user/<user_id>/recommend")
 @errorHandler
 def newfriend(user_id):
+    """
+    Funct returns a new friend similar to a user
+    """
     if db.User.find_one({"_id":ObjectId(user_id)})!=None:
-            print("hola")
             by_id=[ str(x["_id"]) for x in list(db.User.find({},{"username":0}))]
             distances=createsimilars(by_id)
             return dumps(distances[user_id].sort_values(ascending=False)[1:3] )

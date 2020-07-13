@@ -1,5 +1,5 @@
 # what_that_text_means
-*analyze conversations form a chat messaging app*
+*Analyze conversations form a chat messaging app*
 
 ![Image of Yaktocat](https://github.com/WHYTEWYLL/what_that_text_means/blob/master/jpg/image.jpg)
 
